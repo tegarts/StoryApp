@@ -14,6 +14,7 @@ import com.datte.storyapp.R
 class EditTextEmail: AppCompatEditText {
     private lateinit var emailImage: Drawable
 
+
     constructor(context: Context): super(context){
         init()
     }

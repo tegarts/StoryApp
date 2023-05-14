@@ -52,7 +52,7 @@ class EditTextPassword: AppCompatEditText {
                     s.toString().isEmpty() -> {
                         this@EditTextPassword.error = this@EditTextPassword.context.getString(R.string.password_empty_alert)
                     }
-                    s.toString().length < 6 -> {
+                    s.toString().length < 8 -> {
                         this@EditTextPassword.error = this@EditTextPassword.context.getString(R.string.password_char_alert)
                     }
                 }

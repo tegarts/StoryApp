@@ -1,31 +1,24 @@
 package com.datte.storyapp.view.register
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.appcompat.app.AlertDialog
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.ViewModelProvider
 import com.datte.storyapp.R
 import com.datte.storyapp.databinding.ActivityRegisterBinding
-import com.datte.storyapp.model.UserModel
-import com.datte.storyapp.model.UserPreference
-import com.datte.storyapp.model.ViewModelFactory
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+import com.datte.storyapp.view.login.LoginActivity
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
+
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,89 +28,76 @@ class RegisterActivity : AppCompatActivity() {
         setupView()
         setupViewModel()
         setupAction()
-        playAnimation()
     }
 
+    @Suppress("DEPRECATION")
     private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
         supportActionBar?.hide()
     }
 
     private fun setupViewModel() {
-        registerViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[RegisterViewModel::class.java]
-    }
-
-    private fun setupAction() {
-        binding.signupButton.setOnClickListener {
-            val name = binding.nameEditText.text.toString()
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-            when {
-                name.isEmpty() -> {
-                    binding.nameEditTextLayout.error = "Masukkan email"
-                }
-                email.isEmpty() -> {
-                    binding.emailEditTextLayout.error = "Masukkan email"
-                }
-                password.isEmpty() -> {
-                    binding.passwordEditTextLayout.error = "Masukkan password"
-                }
-                else -> {
-                    registerViewModel.saveUser(UserModel(name, email, password, false))
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Akunnya sudah jadi nih. Yuk, login dan belajar coding.")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            finish()
-                        }
-                        create()
-                        show()
+        registerViewModel.register.observe(this) { isSuccess ->
+            if (isSuccess) {
+                val dialogBuilder = AlertDialog.Builder(this)
+                    .setTitle("Registrasi Berhasil")
+                    .setMessage("Akun anda berhasil didaftar. Silahkan Login Terlebih dahulu untuk mengakses daftar story")
+                    .setPositiveButton("Oke") { _,_ ->
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
                     }
-                }
+                    .setOnDismissListener {
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
+                    }
+                val dialog = dialogBuilder.create()
+                dialog.show()
             }
+        }
+
+        registerViewModel.snackbarText.observe(this) { text ->
+            when {
+                text.contains("taken") -> {
+                    binding.emailEditText.error = getString(R.string.email_created)
+                    binding.emailEditText.requestFocus()
+                }
+                text.contains("must be a valid email") -> {
+                    binding.emailEditText.error = getString(R.string.email_must_valid)
+                    binding.emailEditText.requestFocus()
+                }
+                text.contains("Password must be at least 8 characters long") -> {
+                    binding.passwordEditText.error = getString(R.string.password_invalid_input)
+                    binding.passwordEditText.requestFocus()
+                }
+                else -> Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        registerViewModel.isLoading.observe(this) {
+            showLoading(it)
         }
     }
 
-    private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.isVisible = isLoading
+    }
 
-        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-        val nameTextView = ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(500)
-        val nameEditTextLayout = ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(500)
-        val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
-        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(500)
-        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
-        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(500)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(500)
+    private fun setupAction() {
+            binding.loginButton.setOnClickListener {
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            }
 
+            binding.registerButton.setOnClickListener {
+                val name = binding.nameEditText.text.toString()
+                val email = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
 
-        AnimatorSet().apply {
-            playSequentially(
-                title,
-                nameTextView,
-                nameEditTextLayout,
-                emailTextView,
-                emailEditTextLayout,
-                passwordTextView,
-                passwordEditTextLayout,
-                signup
-            )
-            startDelay = 500
-        }.start()
+                registerViewModel.signUp(name, email, password)
+            }
+
     }
 }

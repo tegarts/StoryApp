@@ -1,8 +1,6 @@
 package com.datte.storyapp.model
 
 data class UserModel(
-    val name: String,
-    val email: String,
-    val password: String,
+    val tokenAuth: String,
     val isLogin: Boolean
 )

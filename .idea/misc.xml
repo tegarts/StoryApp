@@ -6,13 +6,25 @@
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable-v24/ic_baseline_email_24.xml" value="0.1305" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable-v24/ic_baseline_lock_24.xml" value="0.1" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable-v24/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.29" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/border.xml" value="0.209" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/custom_password_bg.xml" value="0.1445" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.119" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1445" />
-        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.1" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.29" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.29" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/drawable/ic_logout.xml" value="0.29" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_add_story.xml" value="0.1" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_splash.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
         <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/layout/story_card.xml" value="0.264" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/menu/app_bar.xml" value="0.536" />
+        <entry key="..\:/Users/Tegar/AndroidStudioProjects/StoryApp/app/src/main/res/xml/file_path.xml" value="0.16538461538461538" />
       </map>
     </option>
   </component>

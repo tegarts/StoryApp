@@ -6,32 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".view.register.RegisterActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/image_welcome" />
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/RegisterTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/title_signup_page"
-        android:textSize="20sp"
+        android:text="@string/register_title"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -41,7 +29,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/RegisterTitle" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameEditTextLayout"
@@ -55,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-        <com.datte.storyapp.view.custom.EditTextPassword
+        <com.datte.storyapp.view.custom.EditTextName
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,26 +110,54 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signupButton"
+        android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/navi"
+        android:backgroundTint="@color/orange_theme"
         android:text="@string/signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal"
+    <TextView
+        android:id="@+id/tv_have_account"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/have_account"
+        app:layout_constraintEnd_toEndOf="@id/registerButton"
+        app:layout_constraintStart_toStartOf="@id/registerButton"
+        app:layout_constraintTop_toBottomOf="@id/registerButton" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
         android:layout_height="64dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/orange_theme"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.30191082"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_have_account" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/registerButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical"
